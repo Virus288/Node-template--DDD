@@ -1,0 +1,66 @@
+{
+  "name": "NodeTemplateDDD",
+  "version": "0.1.0",
+  "description": "Simple node.js template made in DDD",
+  "productName": "NodeTemplateDDD",
+  "author": "https://github.com/Virus288",
+  "license": "Apache-2.0",
+  "private": false,
+  "type": "module",
+  "main": "build/main.js",
+  "scripts": {
+    "start": "cross-env NODE_ENV=production node build/src/main.js",
+    "start:dev": "concurrently 'npm run build:watch' 'cross-env NODE_ENV=development nodemon build/src/main.js'",
+    "start:testDev": "cross-env NODE_ENV=testDev node src/main.js",
+    "build": "tsc -p tsconfig.json",
+    "build:watch": "tsc -w -p tsconfig.json",
+    "lint": "cross-env NODE_ENV=development eslint -c eslint.config.mjs . --fix",
+    "listErrors": "node_modules/.bin/tsc --skipLibCheck",
+    "lintStaged": "npx lint-staged",
+    "test": "echo 'If you want to run all the tests, please use makefile'",
+    "test:e2e": "cross-env NODE_ENV=test NODE_OPTIONS=--experimental-vm-modules jest --runInBand --config __tests__/jest.config.e2e.ts",
+    "test:unit": "cross-env NODE_ENV=test NODE_OPTIONS=--experimental-vm-modules jest --config __tests__/jest.config.unit.ts",
+    "test:db": "cross-env NODE_ENV=test NODE_OPTIONS=--experimental-vm-modules jest --runInBand --config __tests__/jest.config.db.ts"
+  },
+  "lint-staged": {
+    "*.ts": [
+      "cross-env NODE_ENV=development eslint --cache"
+    ],
+    "*.json,.{eslintrc,prettierrc}": [
+      "prettier --ignore-path .eslintignore --parser json --write"
+    ]
+  },
+  "keywords": [
+    "node.js",
+    "template",
+    "boilerplate",
+    "ddd",
+    "express"
+  ],
+  "dependencies": {
+  },
+  "devDependencies": {
+    "@eslint/compat": "^1.1.1",
+    "@eslint/eslintrc": "^3.1.0",
+    "@eslint/js": "^9.9.0",
+    "@types/node": "22.7.5",
+    "@typescript-eslint/eslint-plugin": "8.12.2",
+    "@typescript-eslint/parser": "8.12.2",
+    "concurrently": "^9.0.1",
+    "cross-env": "7.0.3",
+    "eslint": "9.14.0",
+    "eslint-config-prettier": "9.1.0",
+    "eslint-plugin-check-file": "2.8.0",
+    "eslint-plugin-import": "2.31.0",
+    "eslint-plugin-jest": "28.8.3",
+    "eslint-plugin-jsdoc": "^50.0.0",
+    "eslint-plugin-prettier": "5.2.1",
+    "eslint-plugin-sort-class-members": "1.20.0",
+    "nodemon": "3.1.7",
+    "prettier": "3.3.3",
+    "typescript": "5.6.3"
+  },
+  "engines": {
+    "node": ">=16"
+  }
+}

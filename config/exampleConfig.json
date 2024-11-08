@@ -1,0 +1,9 @@
+{
+  "port": 80,
+  "myAddress": "http://localhost",
+  "corsOrigin": ["http://localhost"],
+  "session": {
+    "secret": "sessionSecret",
+    "secured": true
+  }
+}

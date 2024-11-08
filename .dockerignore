@@ -1,0 +1,37 @@
+# Docker related stuff
+.dockerignore
+docker-compose*
+compose*
+Dockerfile*
+
+# Git
+.git
+.gitignore
+.github
+
+# Ide cache
+.vs
+.vscode
+.idea
+
+# Npm cache
+npm-debug.log
+
+# Tests
+__tests__
+
+# Modules
+node_modules
+
+# Docs
+docs
+
+# Additional data
+README.md
+eslint.config.mjs
+licence.md
+makefile
+tsconfig.json
+.prettierrc
+.editorconfig
+
