@@ -23,20 +23,22 @@ class App {
    * Try catch for app initialization.
    */
   init(): void {
-    this.handleInit().catch((err) => {
+    try {
+      this.handleInit();
+    } catch (err) {
       const { stack, message } = err as IFullError;
       Log.error('Server', 'Err while initializing app', message, stack);
 
       this.close();
-    });
+    }
   }
 
   /**
    * Initialize application.
    */
-  @Log.decorateDebug('Server', 'Initializing')
-  @Log.decorateTime('Starting server')
-  private async handleInit(): Promise<void> {
+  @Log.decorateSyncDebug('Server', 'Initializing')
+  @Log.decorateSyncTime('Starting server')
+  private handleInit(): void {
     const router = new Router();
     const bootstrap = new Bootstrap();
 
@@ -44,7 +46,7 @@ class App {
     State.controllers = bootstrap;
 
     bootstrap.init();
-    await router.init();
+    router.init();
 
     Log.log('Server', 'Server started');
 
